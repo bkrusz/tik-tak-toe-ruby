@@ -1,12 +1,22 @@
 require './Board.rb'
 require './Square.rb'
 
-class WinLogic
+class Logic
   attr_accessor :x_score, :o_score
+  attr_reader :current_player
 
   def initialize
     @x_score = 0
     @o_score = 0
+    @current_player = 'X'
+  end
+
+  def switch_player
+    if @current_player == 'X'
+      @current_player = 'O'
+    else
+      @current_player = 'X'
+    end
   end
 
   def check_for_win(board)

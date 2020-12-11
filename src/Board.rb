@@ -10,7 +10,7 @@ class Board
 
   def move(player, location)
     if(@square_array[location].is_empty)
-      @square_array[location].player = player
+      @square_array[location].player = player.upcase
       @square_array[location].is_empty = false
     else
       p 'Cannot move there. Space already occupied'

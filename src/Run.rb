@@ -1,14 +1,13 @@
 require './Board.rb'
-require './WinLogic.rb'
+require './Logic.rb'
 
 def game_loop(board, logic)
   board.display
-  p 'x or o: '
-  name = gets.chomp
-  while name != 'q'
-    p 'space: '
-    number = gets.chomp.to_i
-    board.move(name, number)
+  print 'space: '
+  number = gets.chomp
+  while number != 'q'
+    number = number.to_i
+    board.move(logic.current_player, number)
     board_status = logic.check_for_win(board)
     if board_status == 1
       p 'X wins'
@@ -16,13 +15,13 @@ def game_loop(board, logic)
       board.clear
     elsif board_status == -1
       p 'O wins'
-      logic.x_score += 1
+      logic.o_score += 1
       board.clear
     end
     print_score(logic)
     board.display
-    p 'x or o: '
-    name = gets.chomp
+    logic.switch_player
+    number = gets.chomp
   end
 end
 
@@ -31,9 +30,10 @@ def print_score(logic)
 end
 
 def run
-  logic = WinLogic.new
+  logic = Logic.new
   board = Board.new
-  board_status = 0
+  p 'q to quit'
+  p 'X goes first'
   game_loop(board, logic)
 end
 
