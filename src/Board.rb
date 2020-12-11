@@ -9,7 +9,9 @@ class Board
   end
 
   def move(player, location)
-    if(@square_array[location].is_empty)
+    if location < 0 || location > 8
+      p 'OutOfBoundsException'
+    elsif @square_array[location].is_empty
       @square_array[location].player = player.upcase
       @square_array[location].is_empty = false
     else
