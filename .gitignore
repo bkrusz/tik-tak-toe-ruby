@@ -1,8 +1,10 @@
 .DS_store
 *.gem
 *.rbc
+package-lock.json
 /.config
 /coverage/
+/node_modules/
 /InstalledFiles
 /pkg/
 /spec/reports/
